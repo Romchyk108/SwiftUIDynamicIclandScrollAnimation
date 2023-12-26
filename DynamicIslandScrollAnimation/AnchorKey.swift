@@ -7,14 +7,9 @@
 
 import SwiftUI
 
-struct AnchorKey: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct AnchorKey_Previews: PreviewProvider {
-    static var previews: some View {
-        AnchorKey()
+struct AnchorKey: PreferenceKey {
+    static var defaultValue: [String: Anchor<CGRect>] = [:]
+    static func reduce(value: inout [String : Anchor<CGRect>], nextValue: () -> [String : Anchor<CGRect>]) {
+        value.merge(nextValue()) { $1 }
     }
 }
